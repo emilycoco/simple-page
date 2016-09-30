@@ -1,0 +1,31 @@
+.app {
+  header, footer {
+    align-items: center;
+    color: white;
+    display: flex;
+    flex-flow: row nowrap;
+    height: 50px;
+  }
+  footer {
+    background: gray;
+    justify-content: center;
+    a {
+      border-right: 1px solid white;
+      padding: 0 10px;
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+  header {
+    background: gray;
+    h1 {
+      font-size: 1.5em;
+      padding: 0 20px;
+    }
+  }
+  .content-container {
+    display: flex;
+    min-height: 100vh;
+  }
+}
