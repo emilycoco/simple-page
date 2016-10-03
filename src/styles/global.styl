@@ -1,20 +1,71 @@
+// Minimal responsive grid library
+@import 'jeet';
+
+// Uncomment to see grid overlay for page
+//edit();
+
+// Colors
 $blue = #044f94;
 $very-dark-gray = #555;
+$dark-gray = #808080;
 $light-gray = #cbc9cf;
 $white = #fff;
 $yellow-orange = #f6ae1a;
+
+// Color usages
 $emphasis-color = $blue;
 $structure-color = $light-gray;
 $text-color = $very-dark-gray;
+$text-emphasis-color = $dark-gray;
 $cta-color = $yellow-orange;
+
+// Size Variables
+$max-size = 2000px;
+$margin-width = 50px;
+$small-margin-width = 20px;
+
+// Breakpoints
+$max-tablet = 768px;
+$max-phone = 480px;
+
+// Reset browser styles
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
 
 body {
   color: $text-color;
-  font-family: Avenir;
+  font-family: Avenir, Arial, Verdana;
 }
 .bottom-margin {
   margin-bottom: 20px;
 }
-.hidden {
-  display: none;
+.top-margin {
+  margin-top: 50px;
+}
+.content-container {
+  center($max-size, $margin-width);
+}
+
+@media only screen and (max-device-width: $max-phone) {
+  .content-container {
+    center($max-size, $small-margin-width);
+  }
 }

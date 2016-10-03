@@ -26,7 +26,7 @@ export class DisplayTable extends Component {
         });
 
         return (
-            <table className="display-table">
+            <table className="display-table top-margin">
                 <thead>{header}</thead>
                 <tbody>{rows}</tbody>
             </table>

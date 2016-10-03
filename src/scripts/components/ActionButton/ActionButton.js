@@ -3,8 +3,12 @@ import styles from './ActionButton.styl';
 
 export class ActionButton extends Component {
     render() {
-        return (
-            <button className={this.props.show ? 'action-button add-member-form' : 'action-button hidden'} onClick={this.props.action}>{this.props.text}</button>
-        )
+        if (this.props.show || this.props.show === undefined) {
+            return (
+                <button className={this.props.class || 'action-btn'} onClick={this.props.action}>{this.props.text}</button>
+            )
+        }
+
+        return null;
     }
 }

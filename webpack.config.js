@@ -11,6 +11,13 @@ var config = {
         publicPath: '/build/',
         filename: 'bundle.js'
     },
+    stylus: {
+        use: [require('jeet')()]
+    },
+    resolve: {
+        modulesDirectories: ['node_modules'],
+        extensions: ['', '.json', '.js', '.jsx', '.css', '.styl']
+    },
     module: {
         loaders: [
             {

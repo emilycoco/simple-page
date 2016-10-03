@@ -53,20 +53,28 @@ export class App extends Component {
             showForm: false
         });
     }
+    logout() {
+
+        // Fake logout method
+        alert('You are now logged out.')
+    }
     render() {
         return (
             <div className="app">
-                <header>
-                    <div>The Marketplace</div>
+                <header className="content-container">
+                    <span>The Marketplace</span>
+                    <ActionButton class="link-btn logout-btn" text="Logout" action={this.logout.bind(this)} />
                 </header>
                 <div className="content-container">
-                    <h1 className="bottom-margin">Your Household</h1>
-                    <h3 className="bottom-margin">Welcome to the marketplace! Review your household below.</h3>
-                    <DisplayTable columns={this.state.tableColumns} rows={this.state.members} />
+                    <h1 className="bottom-margin top-margin">Your Household</h1>
+                    <h3>Welcome to the marketplace! Review your household below.</h3>
+                    <div className="table-container">
+                        <DisplayTable columns={this.state.tableColumns} rows={this.state.members} />
+                    </div>
                     <AddMemberForm show={this.state.showForm} submitCallback={this.addMember.bind(this)}/>
                     <ActionButton show={!this.state.showForm} text="Add new member" action={this.toggleForm.bind(this)} />
                 </div>
-                <footer>The Marketplace is a work in progress</footer>
+                <footer className="content-container top-margin">The Marketplace is a work in progress</footer>
             </div>
         )
     }
