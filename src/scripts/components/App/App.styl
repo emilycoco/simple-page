@@ -1,31 +1,30 @@
+@require '../../../styles/global.styl';
+
 .app {
+  h1,
+  h3 {
+     text-align: center;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  h3 {
+    font-size: 1.3em;
+  }
   header, footer {
     align-items: center;
+    background: $emphasis-color;
     color: white;
     display: flex;
     flex-flow: row nowrap;
     height: 50px;
   }
-  footer {
-    background: gray;
-    justify-content: center;
-    a {
-      border-right: 1px solid white;
-      padding: 0 10px;
-      &:last-child {
-        border-right: none;
-      }
-    }
-  }
   header {
-    background: gray;
-    h1 {
-      font-size: 1.5em;
-      padding: 0 20px;
-    }
+    color: $cta-color;
+    font-size: 1.5em;
   }
   .content-container {
-    display: flex;
     min-height: 100vh;
+    text-align: center;
   }
 }

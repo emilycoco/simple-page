@@ -2,25 +2,33 @@ import React, { Component } from 'react';
 import styles from './DisplayTable.styl';
 
 export class DisplayTable extends Component {
-    renderTableRow(dataArr, key) {
-        var cells = dataArr.map((data) => {
-            if (key) {
-                return <td key={data[key]}>{data[key]}</td>;
-            } else {
-                return <td key={data}>{data}</td>
-            }
+    renderTableRow(data, rowId) {
+
+        let cells = data.map((el, index) => {
+            return <td key={index}>{el}</td>
         });
+
         return (
-            <tr>
+            <tr key={rowId}>
                 {cells}
             </tr>
         )
     }
     render() {
-        var header = this.renderTableRow(this.props.header);
+        var header = this.renderTableRow(this.props.columns.map((column) => {
+            return column.title;
+        }), 'header');
+
+        var rows = this.props.rows.map((row, index) => {
+            return this.renderTableRow(this.props.columns.map((column) => {
+                return row[column.key];
+            }), index);
+        });
+
         return (
             <table className="display-table">
                 <thead>{header}</thead>
+                <tbody>{rows}</tbody>
             </table>
         )
     }
