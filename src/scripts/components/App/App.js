@@ -61,11 +61,11 @@ export class App extends Component {
     render() {
         return (
             <div className="app">
-                <header className="content-container">
+                <header className="content-container" role="banner">
                     <span>The Marketplace</span>
                     <ActionButton class="link-btn logout-btn" text="Logout" action={this.logout.bind(this)} />
                 </header>
-                <div className="content-container">
+                <div className="content-container" role="main">
                     <h1 className="bottom-margin top-margin">Your Household</h1>
                     <h3>Welcome to the marketplace! Review your household below.</h3>
                     <div className="table-container">

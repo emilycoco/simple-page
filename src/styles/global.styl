@@ -18,6 +18,9 @@ $structure-color = $light-gray;
 $text-color = $very-dark-gray;
 $text-emphasis-color = $dark-gray;
 $cta-color = $yellow-orange;
+$link-color = $white;
+$cta-hover-color = lighten($cta-color, 20);
+$link-hover-color = darken($link-color, 20);
 
 // Size Variables
 $max-size = 2000px;
@@ -62,6 +65,14 @@ body {
 }
 .content-container {
   center($max-size, $margin-width);
+}
+.aria-hidden {
+  height:1px;
+  left:-10000px;
+  overflow:hidden;
+  position:absolute;
+  top:auto;
+  width:1px;
 }
 
 @media only screen and (max-device-width: $max-phone) {

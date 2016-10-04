@@ -2,20 +2,27 @@
 
 btn() {
   border: none;
+  cursor: pointer;
   font-size: .7em;
 }
 .action-btn {
   margin: 0 auto;
-  color: $white;
+  color: $link-color;
   background-color: $cta-color;
   padding: 20px 40px;
   btn();
+  &:hover {
+    background-color: $cta-hover-color;
+  }
 }
 .link-btn {
   background: none;
   border: none;
   color: $white;
   btn();
+  &:hover {
+    color: $link-hover-color;
+  }
 }
 .logout-btn {
   right: $margin-width;
