@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './DisplayTable.styl';
+import displayStyles from './DisplayTable.styl';
 
 export class DisplayTable extends Component {
     renderTableRow(data, rowId) {
@@ -8,7 +8,10 @@ export class DisplayTable extends Component {
             if (rowId === 'header') {
                 return <th key={index} scope="col">{el}</th>
             } else {
-                return <td key={index}>{el}</td>
+                let brokenEl = el.split(' ').map((word, index) => {
+                    return <span key={index}>{word}<br/></span>
+                });
+                return <td key={index}>{brokenEl}</td>
             }
         });
 

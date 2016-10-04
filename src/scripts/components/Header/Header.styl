@@ -1,0 +1,22 @@
+@require '../../../styles/global.styl';
+
+.header {
+  background: $emphasis-color;
+  color: $cta-color;
+  font-size: 1.5em;
+  height: 75px;
+  position: relative;
+  span,
+  button {
+    align(vertical);
+  }
+  .logout-btn {
+    right: $margin-width;
+  }
+}
+
+@media only screen and (max-width: $max-tablet) {
+  .app .logout-btn {
+    right: $small-margin-width;
+  }
+}

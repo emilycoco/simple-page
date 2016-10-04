@@ -12,9 +12,16 @@
     padding: 0 5px;
     col(1/3, cycle: 3, gutter: 1);
   }
+  .error {
+    color: $error-color;
+    display: inline-block;
+    &:empty {
+      height: 22px;
+    }
+  }
 }
 
-@media only screen and (max-device-width: $max-tablet) {
+@media only screen and (max-width: $max-tablet) {
   .add-member-form {
     col(1);
     input {

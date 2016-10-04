@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import styles from './App.styl';
-import { DisplayTable } from '../DisplayTable/DisplayTable.js';
+import { DisplayTable } from '../DisplayTable/DisplayTable';
 import { AddMemberForm } from '../AddMemberForm/AddMemberForm';
 import { ActionButton } from '../ActionButton/ActionButton';
-import HouseHold from '../../../mockData/HouseHold.js';
+import { Header } from '../Header/Header';
+import { Footer } from '../Footer/Footer';
+import HouseHold from '../../mockData/HouseHold';
+import appStyles from './App.styl';
 
 export class App extends Component {
     constructor(props) {
@@ -53,18 +55,10 @@ export class App extends Component {
             showForm: false
         });
     }
-    logout() {
-
-        // Fake logout method
-        alert('You are now logged out.')
-    }
     render() {
         return (
             <div className="app">
-                <header className="content-container" role="banner">
-                    <span>The Marketplace</span>
-                    <ActionButton class="link-btn logout-btn" text="Logout" action={this.logout.bind(this)} />
-                </header>
+                <Header/>
                 <div className="content-container" role="main">
                     <h1 className="bottom-margin top-margin">Your Household</h1>
                     <h3>Welcome to the marketplace! Review your household below.</h3>
@@ -74,7 +68,7 @@ export class App extends Component {
                     <AddMemberForm show={this.state.showForm} submitCallback={this.addMember.bind(this)}/>
                     <ActionButton show={!this.state.showForm} text="Add new member" action={this.toggleForm.bind(this)} />
                 </div>
-                <footer className="content-container top-margin">The Marketplace is a work in progress</footer>
+                <Footer/>
             </div>
         )
     }

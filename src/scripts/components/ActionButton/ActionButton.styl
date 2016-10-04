@@ -10,6 +10,7 @@ btn() {
   color: $link-color;
   background-color: $cta-color;
   padding: 20px 40px;
+  text-align: center;
   btn();
   &:hover {
     background-color: $cta-hover-color;
@@ -24,12 +25,9 @@ btn() {
     color: $link-hover-color;
   }
 }
-.logout-btn {
-  right: $margin-width;
-}
 
-@media only screen and (max-device-width: $max-phone) {
-  .logout-btn {
-    right: $small-margin-width;
+@media only screen and (max-width: $max-phone) {
+  .action-btn {
+    width: 100%;
   }
 }
