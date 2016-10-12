@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var BUILD_DIR = path.resolve(__dirname, 'build');
 var APP_DIR = path.resolve(__dirname, 'src');
@@ -30,11 +31,14 @@ var config = {
             },
             {
                 test: /\.styl$/,
-                loader: 'style-loader!css-loader!stylus-loader',
+                loader: ExtractTextPlugin.extract('css-loader!stylus-loader'),
                 exclude: /node_modules/
             }
         ]
-    }
+    },
+    plugins: [
+        new ExtractTextPlugin('styles.css')
+    ]
 };
 
 

@@ -65,8 +65,8 @@ export class App extends Component {
                     <div className="table-container">
                         <DisplayTable columns={this.state.tableColumns} rows={this.state.members} />
                     </div>
-                    <AddMemberForm show={this.state.showForm} submitCallback={this.addMember.bind(this)}/>
-                    <ActionButton show={!this.state.showForm} text="Add new member" action={this.toggleForm.bind(this)} />
+                    <AddMemberForm show={this.state.showForm} submitCallback={(member) => this.addMember(member)}/>
+                    <ActionButton show={!this.state.showForm} text="Add new member" action={() => this.toggleForm()} />
                 </div>
                 <Footer/>
             </div>

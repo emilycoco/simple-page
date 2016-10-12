@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import displayStyles from './DisplayTable.styl';
+import globalStyles from '../../../styles/global.styl';
 
 export class DisplayTable extends Component {
     renderTableRow(data, rowId) {

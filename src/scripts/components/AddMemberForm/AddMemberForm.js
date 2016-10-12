@@ -59,19 +59,19 @@ export class AddMemberForm extends Component {
                                type="text"
                                placeholder="Full name"
                                aria-label="full name"
-                               onFocus={this.resetError.bind(this)}/>
+                               onFocus={() => this.resetError()}/>
                         <input value={this.state.role}
                                onChange={(e) => this.updateValue('role', e)}
                                type="text"
                                placeholder="Role"
                                aria-label="role"
-                               onFocus={this.resetError.bind(this)}/>
+                               onFocus={() => this.resetError()}/>
                         <input value={this.state.fruit}
                                onChange={(e) => this.updateValue('fruit', e)}
                                type="text"
                                placeholder="Favorite fruit"
                                aria-label="favorite fruit"
-                               onFocus={this.resetError.bind(this)}/>
+                               onFocus={() => this.resetError()}/>
                     </div>
                     <ActionButton show="true"
                                   text="Create new member"
