@@ -6,7 +6,7 @@
   "scripts": {
     "build": "./node_modules/.bin/webpack -d",
     "watch": "./node_modules/.bin/webpack -d --watch",
-    "start-dev": "webpack-dev-server --hot"
+    "start-dev": "webpack-dev-server --hot --inline"
   },
   "author": "Emily Coco",
   "license": "ISC",

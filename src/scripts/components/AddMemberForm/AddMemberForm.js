@@ -1,77 +1,148 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { ActionButton } from '../ActionButton/ActionButton';
+import { FormInput } from '../FormInput/FormInput';
 import formStyles from './AddMemberForm.styl';
 
 export class AddMemberForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            role: '',
-            fruit: '',
-            error: false
+            fullName: {
+                value: '',
+                valid: true,
+                error: 'Please add a name.',
+                placeholder: 'Full name',
+                id: 'fullName'
+            },
+            role: {
+                value: '',
+                valid: true,
+                error: 'Please add a role.',
+                placeholder: 'Role',
+                id: 'role'
+            },
+            favoriteFruit: {
+                value: '',
+                valid: true,
+                error: 'Please add a fruit.',
+                placeholder: 'Favorite fruit',
+                id: 'favoriteFruit'
+            },
+            error: {
+                error: false,
+                errorMsg: '',
+                errorId: null
+            }
         };
     }
     submitForm(e) {
         e.preventDefault();
 
-        var formValues = {
-            fullName: this.state.name,
-            role: this.state.role,
-            favoriteFruit: this.state.fruit
+        let formValues = {
+            fullName: null,
+            role: null,
+            favoriteFruit: null
         };
 
         for (let key in formValues) {
-            if (!formValues[key]) {
-                this.setState({error: 'Please complete all fields.'});
+            let field = this.state[key];
+            if (!this.checkField(key)) {
+                let error = this.state.error;
+                error.error = true;
+                error.errorMsg = field.error;
+                error.errorId = field.id;
+
+                this.setState({error: error});
+
                 return;
+            } else {
+                formValues[key] = this.state[key].value;
             }
         }
-        if (!this.state.error) {
+        if (!this.state.error.error) {
             this.props.submitCallback(formValues);
             this.resetState();
         }
     }
     resetState() {
-        this.setState({
-            name: '',
-            role: '',
-            fruit: ''
+        this.setState((previousState) => {
+            let fullName = previousState.fullName;
+            fullName.value = '';
+            let role = previousState.role;
+            role.value = '';
+            let favoriteFruit = previousState.favoriteFruit;
+            favoriteFruit.value = '';
+            return {
+                fullName: fullName,
+                role: role,
+                favoriteFruit: favoriteFruit
+            }
         });
     }
-    updateValue(key, e) {
-        var newState = {};
-        newState[key] = e.target.value;
-        this.setState(newState);
+    updateValue(fieldId, e) {
+        let field = this.state[fieldId];
+        field.value = e.target.value;
+        this.setState({fieldId: field});
     }
-    resetError() {
-        this.setState({error: false});
+    resetField(fieldId) {
+        let field = this.state[fieldId];
+        let error = this.state.error;
+        error.error = false;
+        field.valid = true;
+        this.setState({
+            error: error,
+            fieldId: field
+        });
+    }
+    checkField(fieldId) {
+        let field = this.state[fieldId];
+        field.valid = !!field.value;
+        this.setState({
+            fieldId: field
+        });
+
+        return field.valid;
+    }
+    focusOnEl(elId) {
+        if (elId) {
+            try {
+                ReactDOM.findDOMNode(this.refs[elId]).focus();
+                this.resetField(elId);
+            } catch(err) {
+                return;
+            }
+        }
     }
 
     render() {
         if (this.props.show || this.props.show === undefined) {
             return (
                 <form className="add-member-form">
-                    <span className="error">{this.state.error}</span>
-                    <div className="bottom-margin input-container">
-                        <input value={this.state.name}
-                               onChange={(e) => this.updateValue('name', e)}
-                               type="text"
-                               placeholder="Full name"
-                               aria-label="full name"
-                               onFocus={this.resetError.bind(this)}/>
-                        <input value={this.state.role}
-                               onChange={(e) => this.updateValue('role', e)}
-                               type="text"
-                               placeholder="Role"
-                               aria-label="role"
-                               onFocus={this.resetError.bind(this)}/>
-                        <input value={this.state.fruit}
-                               onChange={(e) => this.updateValue('fruit', e)}
-                               type="text"
-                               placeholder="Favorite fruit"
-                               aria-label="favorite fruit"
-                               onFocus={this.resetError.bind(this)}/>
+                    {!this.state.error.error ? null :
+                        <span role="alertdialog"
+                              aria-labelledby="error-btn">
+                            <button
+                                id="error-btn"
+                                onClick={() => this.focusOnEl(this.state.error.errorId)}>
+                                {this.state.error.errorMsg}</button>
+                        </span>}
+                    <div className={!this.state.error.error ? 'bottom-margin input-container no-error' :'bottom-margin input-container'}>
+                        <FormInput input={this.state.fullName}
+                                   updateValue={(fieldId, e) => this.updateValue(fieldId, e)}
+                                   resetField={(fieldId) => this.resetField(fieldId)}
+                                   checkField={(fieldId) => this.checkField(fieldId)}
+                                   ref="fullName"/>
+                        <FormInput input={this.state.role}
+                                   updateValue={(fieldId, e) => this.updateValue(fieldId, e)}
+                                   resetField={(fieldId) => this.resetField(fieldId)}
+                                   checkField={(fieldId) => this.checkField(fieldId)}
+                                   ref="role"/>
+                        <FormInput input={this.state.favoriteFruit}
+                                   updateValue={(fieldId, e) => this.updateValue(fieldId, e)}
+                                   resetField={(fieldId) => this.resetField(fieldId)}
+                                   checkField={(fieldId) => this.checkField(fieldId)}
+                                   ref="favoriteFruit"/>
                     </div>
                     <ActionButton show="true"
                                   text="Create new member"
