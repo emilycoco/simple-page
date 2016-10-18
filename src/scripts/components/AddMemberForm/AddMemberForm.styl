@@ -5,28 +5,22 @@
   .input-container {
     cf(both);
   }
-  input {
-    border: 1px solid $light-gray;
-    font-size: 1em;
-    height: 50px;
-    padding: 0 5px;
-    col(1/3, cycle: 3, gutter: 1);
-  }
-  .error {
+  #error-btn {
+    border: none;
+    background: none;
     color: $error-color;
-    display: inline-block;
-    &:empty {
-      height: 22px;
-    }
+    font-size: 1em;
+    padding: 0;
+    cursor: hand;
+  }
+  //  When there is no error, add padding so an error won't push the form down if it appears
+  .no-error {
+    padding-top: 18px;
   }
 }
 
 @media only screen and (max-width: $max-tablet) {
   .add-member-form {
     col(1);
-    input {
-      margin-bottom: 10px;
-      col(1);
-    }
   }
 }
